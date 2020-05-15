@@ -13,6 +13,7 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
     area_codes = set()
+    banglore_to_banglore_calls = 0
 
     for number1, number2, time, duration in calls:
         if number1.startswith("(080)"):
@@ -23,11 +24,18 @@ with open('calls.csv', 'r') as f:
             elif number2.startswith("140"):
                 area_codes.add("140")
 
+        if number1.startswith("(080)") and number2.startswith("(080)"):
+            banglore_to_banglore_calls += 1
+
     print("The numbers called by people in Bangalore have codes:")
     sorted_area_codes = list(area_codes)
     sorted_area_codes.sort()
     for code in sorted_area_codes:
         print(code)
+
+    percentage = round((banglore_to_banglore_calls / len(calls)) * 100, 2)
+
+    print(f"{percentage} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
 
 """
 TASK 3:
@@ -59,4 +67,14 @@ Print the answer as a part of a message::
 "<percentage> percent of calls from fixed lines in Bangalore are calls
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
+"""
+
+"""
+Runtime analysis:
+
+The time complexity of this solution is O(n) where n is the number of call records.
+We iterate through the list of call records once to find the area codes called by banglore numbers,
+and the percentage of banglore to banglore calls.
+
+If we condiser the list.sort() method, then the total time complexity becomes O(n log(n))
 """

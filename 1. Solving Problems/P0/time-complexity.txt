@@ -16,3 +16,11 @@ Task 2:
   The time complexity of this solution is O(n) where 'n' is the number of calls.
   We iterate over the list of call records and keep the track of number and thier total duration.
   Simultaneously we update the variable that keeps track of the number that spent the most time.
+
+Task 3:
+
+  The time complexity of this solution is O(n) where n is the number of call records.
+  We iterate through the list of call records once to find the area codes called by banglore numbers,
+  and the percentage of banglore to banglore calls.
+
+  If we condiser the list.sort() method, then the total time complexity becomes O(n log(n))
