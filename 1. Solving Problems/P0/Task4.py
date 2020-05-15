@@ -55,4 +55,7 @@ The time complexity of this program is O(c + t) where c is the number of call re
 and t is the number of text records.
 
 This comes down to O(n) where n is the total input.
+
+The sort function has a complexity of O(n log(n)), so the total complexity is O(n + n log(n)),
+which can also be written as O(n log(n)).
 """
