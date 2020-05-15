@@ -5,11 +5,21 @@ daysOfMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 def isLeapYear(year):
-    return year % 4 == 0
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    else:
+        return year % 4 == 0
 
 
 def nextDay(year, month, day):
-    if day < 30:
+    days_in_month = daysOfMonth[month - 1]
+
+    if isLeapYear(year) and month == 2:
+        days_in_month += 1
+
+    if day < days_in_month:
         return year, month, day + 1
     else:
         if month < 12:
@@ -44,11 +54,10 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     return days
 
 
-def getDays(day, month, year):
-    today = date.today()
-    current_day = today.day
-    current_month = today.month
-    current_year = today.year
+today = date.today()
+current_day = today.day
+current_month = today.month
+current_year = today.year
 
 
-print(daysBetweenDates(1920, 8, 18, 2020, 8, 18))
+print(daysBetweenDates(1996, 8, 18, current_year, current_month, current_day))

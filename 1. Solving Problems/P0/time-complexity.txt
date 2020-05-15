@@ -1,0 +1,18 @@
+Task 0:
+
+  The time take by this program is O(1), considering that indexing a list for first and last position takes a
+  constant amount of time regardless the number of entries in it.
+
+  However, if you take into consideration the code that is required read and build the list, the complexity goes
+  to O(n), because we have to read n number of lines.
+
+Task 1:
+
+  The time taken for the entire program is O(t + c), where 't' is the number of text records
+  and 'c' is the number of call records. The reason is we have to iterate over both the lists.
+
+Task 2:
+
+  The time complexity of this solution is O(n) where 'n' is the number of calls.
+  We iterate over the list of call records and keep the track of number and thier total duration.
+  Simultaneously we update the variable that keeps track of the number that spent the most time.
