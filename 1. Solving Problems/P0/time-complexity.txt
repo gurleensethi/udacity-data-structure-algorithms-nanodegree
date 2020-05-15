@@ -11,6 +11,8 @@ Task 1:
   The time taken for the entire program is O(t + c), where 't' is the number of text records
   and 'c' is the number of call records. The reason is we have to iterate over both the lists.
 
+  This comes down to O(n) where n is the total input.
+
 Task 2:
 
   The time complexity of this solution is O(n) where 'n' is the number of calls.
@@ -24,3 +26,10 @@ Task 3:
   and the percentage of banglore to banglore calls.
 
   If we condiser the list.sort() method, then the total time complexity becomes O(n log(n))
+
+Task 4:
+
+  The time complexity of this program is O(c + t) where c is the number of call records 
+  and t is the number of text records.
+
+  This comes down to O(n) where n is the total input.

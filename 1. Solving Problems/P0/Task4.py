@@ -25,3 +25,34 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+possible_telemarketers = set()
+not_telemarketers = set()
+
+for number1, number2, time, duration in calls:
+    not_telemarketers.add(number2)
+
+    if number2 in possible_telemarketers:
+        possible_telemarketers.remove(number2)
+
+    if number1 not in not_telemarketers:
+        possible_telemarketers.add(number1)
+
+for number1, number2, time in texts:
+    if number1 in possible_telemarketers:
+        possible_telemarketers.remove(number1)
+
+sorted_telemarketer_numbers = list(possible_telemarketers)
+sorted_telemarketer_numbers.sort()
+
+print("These numbers could be telemarketers: ")
+for number in sorted_telemarketer_numbers:
+    print(number)
+
+"""
+Runtime analysis:
+
+The time complexity of this program is O(c + t) where c is the number of call records 
+and t is the number of text records.
+
+This comes down to O(n) where n is the total input.
+"""

@@ -12,31 +12,6 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-    area_codes = set()
-    banglore_to_banglore_calls = 0
-
-    for number1, number2, time, duration in calls:
-        if number1.startswith("(080)"):
-            if number2.startswith("("):
-                area_codes.add(number2[1:4])
-            elif " " in number2 and (number2[0] == '7' or number2[0] == '8' or number2[0] == '9'):
-                area_codes.add(number2[0:4])
-            elif number2.startswith("140"):
-                area_codes.add("140")
-
-        if number1.startswith("(080)") and number2.startswith("(080)"):
-            banglore_to_banglore_calls += 1
-
-    print("The numbers called by people in Bangalore have codes:")
-    sorted_area_codes = list(area_codes)
-    sorted_area_codes.sort()
-    for code in sorted_area_codes:
-        print(code)
-
-    percentage = round((banglore_to_banglore_calls / len(calls)) * 100, 2)
-
-    print(f"{percentage} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
-
 """
 TASK 3:
 (080) is the area code for fixed line telephones in Bangalore.
@@ -68,6 +43,31 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+area_codes = set()
+banglore_to_banglore_calls = 0
+
+for number1, number2, time, duration in calls:
+    if number1.startswith("(080)"):
+        if number2.startswith("("):
+            area_codes.add(number2[1:4])
+        elif " " in number2 and (number2[0] == '7' or number2[0] == '8' or number2[0] == '9'):
+            area_codes.add(number2[0:4])
+        elif number2.startswith("140"):
+            area_codes.add("140")
+
+    if number1.startswith("(080)") and number2.startswith("(080)"):
+        banglore_to_banglore_calls += 1
+
+print("The numbers called by people in Bangalore have codes:")
+sorted_area_codes = list(area_codes)
+sorted_area_codes.sort()
+for code in sorted_area_codes:
+    print(code)
+
+percentage = round((banglore_to_banglore_calls / len(calls)) * 100, 2)
+
+print(f"{percentage} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
 
 """
 Runtime analysis:
