@@ -111,3 +111,45 @@ def evaluate_post_fix(input_list):
             stack.push(int(i))
 
     return stack.pop()
+
+
+def reverse_stack(stack):
+    new_stack = Stack()
+
+    while not stack.is_empty():
+        new_stack.push(stack.pop())
+
+    return new_stack
+
+
+def reverse_stack_links(stack):
+    if stack.head or stack.head.next:
+        return stack
+
+    previous_node = None
+    current_node = stack.head
+    next_node = stack.head
+
+    while current_node:
+        next_node = next_node.next
+        current_node.next = previous_node
+        previous_node = current_node
+        current_node = next_node
+
+    stack.head = previous_node
+    return stack
+
+
+def minimum_bracket_reversals(input_string):
+    stack = Stack()
+
+    for i in input_string:
+        if i == "{":
+            stack.push(i)
+        else:
+            if stack.top() == '{':
+                stack.pop()
+            else:
+                stack.push(i)
+
+    return -1 if stack.size() == 0 else stack.size() // 2
