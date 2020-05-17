@@ -43,5 +43,45 @@ class StackUsingArray:
 
 
 class Stack:
+
     def __init__(self):
         self.head = None
+        self.num_elements = 0
+
+    def push(self, value):
+        new_node = Node(value)
+        new_node.next = self.head
+        self.head = new_node
+        self.num_elements += 1
+
+    def is_empty(self):
+        return self.head == None
+
+    def size(self):
+        return self.num_elements
+
+    def pop(self):
+        if self.is_empty():
+            return None
+        node = self.head
+        self.head = self.head.next
+        self.num_elements -= 1
+        return node.value
+
+    def peek(self):
+        if self.head == None:
+            return None
+        return self.head.value
+
+
+def equation_checker(equation):
+    stack = Stack()
+
+    for i in equation:
+        if i == '(':
+            stack.push()
+        elif i == ')':
+            if stack.pop() == None:
+                return False
+
+    return stack.is_empty()
