@@ -68,10 +68,16 @@ class Stack:
         self.num_elements -= 1
         return node.value
 
-    def peek(self):
+    def top(self):
         if self.head == None:
             return None
         return self.head.value
+
+    def gen(self):
+        temp = self.head
+        while temp:
+            yield temp.value
+            temp = temp.next
 
 
 def equation_checker(equation):
@@ -85,3 +91,23 @@ def equation_checker(equation):
                 return False
 
     return stack.is_empty()
+
+
+def evaluate_post_fix(input_list):
+    stack = Stack()
+
+    for i in input_list:
+        if i == '+':
+            stack.push(stack.pop() + stack.pop())
+        elif i == '*':
+            stack.push(stack.pop() * stack.pop())
+        elif i == '-':
+            stack.push(stack.pop() - stack.pop())
+        elif i == '/':
+            num1 = stack.pop()
+            num2 = stack.pop()
+            stack.push(int(num2 / num1))
+        else:
+            stack.push(int(i))
+
+    return stack.pop()
