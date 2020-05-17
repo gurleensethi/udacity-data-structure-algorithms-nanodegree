@@ -1,38 +1,27 @@
-Task 0:
+Task0
+-----
+Time complexity of this solution is O(1), because array indexing takes a constant amount of time.
 
-  The time take by this program is O(1), considering that indexing a list for first and last position takes a
-  constant amount of time regardless the number of entries in it.
+Task1
+-----
+Time complexity of this solution is O(N + M), where N is number of texts and M is number of calls.
+This can be written as O(N) where N is the total input.
 
-  However, if you take into consideration the code that is required read and build the list, the complexity goes
-  to O(n), because we have to read n number of lines.
+Task2
+-----
+Time complexity of this solution is O(N) where N is number of calls, because we need to iterate
+over the list of calls once.
 
-Task 1:
+Task3
+-----
+Time complexity of this solution is O(N) where N is the number of call records, because we iterate
+over the list of calls once.
+list.sort() (which has a complexity of O(N log(N))) has been used to sort the list and display the result. 
+Conseding it in the final result, the complexity becomes O(N) + O(N log(N)) = O(N log(N)).
 
-  The time taken for the entire program is O(t + c), where 't' is the number of text records
-  and 'c' is the number of call records. The reason is we have to iterate over both the lists.
-
-  This comes down to O(n) where n is the total input.
-
-Task 2:
-
-  The time complexity of this solution is O(n) where 'n' is the number of calls.
-  We iterate over the list of call records and keep the track of number and thier total duration.
-  Simultaneously we update the variable that keeps track of the number that spent the most time.
-
-Task 3:
-
-  The time complexity of this solution is O(n) where n is the number of call records.
-  We iterate through the list of call records once to find the area codes called by banglore numbers,
-  and the percentage of banglore to banglore calls.
-
-  If we condiser the list.sort() method, then the total time complexity becomes O(n log(n))
-
-Task 4:
-
-  The time complexity of this program is O(c + t) where c is the number of call records 
-  and t is the number of text records.
-
-  This comes down to O(n) where n is the total input.
-
-  The sort function has a complexity of O(n log(n)), so the total complexity is O(n + n log(n)),
-  which can also be written as O(n log(n)).
+Task4
+-----
+Time complexity of this solution is O(N + M), where N is number of calls and M is number of texts.
+This can be written as O(N) where N is the total input.
+list.sort() (which has a complexity of O(N log(N))) has been used to sort the list and display the result. 
+Conseding it in the final result, the complexity becomes O(N) + O(N log(N)) = O(N log(N)).
