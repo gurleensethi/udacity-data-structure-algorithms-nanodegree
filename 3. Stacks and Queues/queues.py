@@ -129,3 +129,30 @@ class QueueFromStack:
             while self.in_storage.size() != 0:
                 self.out_storage.push(self.in_storage.pop())
         return self.out_storage.pop()
+
+
+class QueuePython:
+
+    def __init__(self):
+        self.arr = []
+
+    def size(self):
+        return len(self.arr)
+
+    def enqueue(self, value):
+        self.arr.append(value)
+
+    def dequeue(self):
+        if self.size() == 0:
+            return None
+        return self.arr.pop(0)
+
+
+def reverse_queue(queue):
+    stack = Stack()
+
+    while not queue.is_empty():
+        stack.push(queue.dequeue())
+
+    while not stack.is_empty():
+        queue.enqueue(stack.pop())
