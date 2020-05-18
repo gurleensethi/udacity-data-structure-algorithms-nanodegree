@@ -1,3 +1,6 @@
+from stacks import Stack
+
+
 class QueueArray:
 
     def __init__(self, initial_size=10):
@@ -107,3 +110,22 @@ class Queue:
             self.head = self.tail = None
 
         return value
+
+
+class QueueFromStack:
+
+    def __init__(self):
+        self.in_storage = Stack()
+        self.out_storage = Stack()
+
+    def size(self):
+        return self.in_storage.size() + self.out_storage.size()
+
+    def enqueue(self, value):
+        self.in_storage.push(value)
+
+    def dequeue(self):
+        if self.out_storage.size() == 0:
+            while self.in_storage.size() != 0:
+                self.out_storage.push(self.in_storage.pop())
+        return self.out_storage.pop()
