@@ -62,3 +62,48 @@ class QueueArray:
     def print_queue(self):
         for i in self.arr:
             print(i)
+
+
+class Node:
+
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class Queue:
+
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.num_elements = 0
+
+    def enqueue(self, value):
+        new_node = Node(value)
+        self.num_elements += 1
+
+        if self.head == None:
+            self.head = self.tail = new_node
+            return
+
+        self.tail.next = new_node
+        self.tail = self.tail.next
+
+    def size(self):
+        return self.num_elements
+
+    def is_empty(self):
+        return self.head == None
+
+    def dequeue(self):
+        if self.head == None:
+            return
+
+        value = self.head.value
+        self.head = self.head.next
+        self.num_elements -= 1
+
+        if self.head == None:
+            self.head = self.tail = None
+
+        return value
