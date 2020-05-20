@@ -22,3 +22,21 @@ def is_palindrome(input):
     first_char = input[0]
     last_char = input[-1]
     return first_char == last_char and is_palindrome(input[1:-1])
+
+
+def add_one(input):
+    if len(input) == 1:
+        new_num = input[0] + 1
+        if new_num > 9:
+            return [new_num // 10, new_num % 10]
+        else:
+            return [new_num]
+
+    new_arr = add_one(input[1:])
+    if len(new_arr) == len(input):
+        new_num = new_arr[0] + input[0]
+        return [new_num // 10, new_num % 10] + new_arr[1:]
+    return [input[0]] + new_arr
+
+
+print(add_one([1, 3, 4]))
