@@ -57,3 +57,18 @@ def permute(input):
             sub_arr.append(copied_arr)
         new_arr += sub_arr
     return new_arr
+
+
+def permutations(input):
+    if len(input) <= 1:
+        return [input[0]]  # Returns[element]
+
+    result = permutations(input[1:])  # Contains => [str, str, ...]
+    element = input[0]
+    new_arr = []
+    for index, j in enumerate(result):
+        sub_arr = []
+        for i in range(len(result[0]) + 1):
+            sub_arr.append(j[0:i] + element + j[i:])
+        new_arr += sub_arr
+    return new_arr
