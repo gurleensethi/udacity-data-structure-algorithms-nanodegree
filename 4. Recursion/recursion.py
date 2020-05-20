@@ -1,3 +1,6 @@
+import copy
+
+
 def sum_integers(n):
     if n == 0:
         return 0
@@ -39,4 +42,18 @@ def add_one(input):
     return [input[0]] + new_arr
 
 
-print(add_one([1, 3, 4]))
+def permute(input):
+    if len(input) <= 1:
+        return [input]  # Returns[[element]]
+
+    result = permute(input[1:])
+    element = input[0]
+    new_arr = []
+    for index, j in enumerate(result):
+        sub_arr = []
+        for i in range(len(result[0]) + 1):
+            copied_arr = copy.deepcopy(j)
+            copied_arr.insert(i, element)
+            sub_arr.append(copied_arr)
+        new_arr += sub_arr
+    return new_arr
