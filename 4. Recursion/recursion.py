@@ -115,4 +115,9 @@ def keypad(num):
     return str_arr
 
 
-print(keypad(23))
+def deep_reverse(l):
+    for index, i in enumerate(l):
+        if type(i) == list:
+            l[index] = deep_reverse(i)
+    l.reverse()
+    return l
