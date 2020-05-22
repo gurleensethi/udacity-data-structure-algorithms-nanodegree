@@ -72,3 +72,47 @@ def permutations(input):
             sub_arr.append(j[0:i] + element + j[i:])
         new_arr += sub_arr
     return new_arr
+
+
+def get_characters(num):
+    if num == 2:
+        return "abc"
+    elif num == 3:
+        return "def"
+    elif num == 4:
+        return "ghi"
+    elif num == 5:
+        return "jkl"
+    elif num == 6:
+        return "mno"
+    elif num == 7:
+        return "pqrs"
+    elif num == 8:
+        return "tuv"
+    elif num == 9:
+        return "wxyz"
+    else:
+        return ""
+
+
+def keypad(num):
+    num_list = list(str(num))
+    if len(num_list) == 1:
+        chars = get_characters(int(num_list[0]))
+        if len(chars) == 0:
+            return [""]
+        return list(get_characters(int(num_list[0])))
+
+    current_str_arr = keypad(int("".join(num_list[1:])))
+    chars_in_num = list(get_characters(int(num_list[0])))
+
+    str_arr = []
+
+    for i in current_str_arr:
+        for j in chars_in_num:
+            str_arr.append(j + i)
+
+    return str_arr
+
+
+print(keypad(23))
