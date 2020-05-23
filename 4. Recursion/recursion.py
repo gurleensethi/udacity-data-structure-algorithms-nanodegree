@@ -121,3 +121,50 @@ def deep_reverse(l):
             l[index] = deep_reverse(i)
     l.reverse()
     return l
+
+
+def print_integers(n):
+    if (n == 0):
+        return
+    print(n)
+    print_integers(n - 1)
+
+
+def subsets(arr):
+    if len(arr) == 0:
+        return [[]]  # returns : [["element"]]
+
+    result = subsets(arr[1:])  # contains : [["element"]]
+    output = []
+    element = arr[0]
+    for i in result:
+        output.append([element] + i)
+    output.extend(result)
+
+    return output
+
+
+def staircase(n):
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    if n == 3:
+        return 4
+    return staircase(n - 1) + (n - 1)
+
+
+def last_index_sol(arr, target, i):
+    if len(arr) == i:
+        return -1
+    index = last_index_sol(arr, target, i + 1)
+    if arr[i] == target and index is -1:
+        return i
+    return index
+
+
+def last_index(arr, target):
+    return last_index_sol(arr, target, 0)
+
+
+print(last_index([1, 2, 3, 1], 4))
