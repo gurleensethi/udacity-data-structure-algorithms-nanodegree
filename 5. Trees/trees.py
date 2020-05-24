@@ -320,3 +320,35 @@ def bfs(tree):
                 print(output)
             output = ""
             should_print = False
+
+
+def diameter_of_binary_tree(root):
+    if root == None:
+        return 0
+
+    left_value = diameter_of_binary_tree(root.get_left_child())
+    right_value = diameter_of_binary_tree(root.get_right_child())
+
+    return (left_value if left_value > right_value else right_value) + 1
+
+
+def path_from_root_to_node(root, data):
+    l = []
+
+    temp = root
+
+    while temp is not None:
+        l.append(temp.get_value())
+        if temp.get_value() == data:
+            break
+        elif data > temp.get_value():
+            temp = temp.get_right_child()
+        else:
+            temp = temp.get_left_child()
+
+    if temp == None:
+        return []
+    return l
+
+
+print(path_from_root_to_node(tree.get_root(), 6))
