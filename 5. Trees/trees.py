@@ -73,6 +73,26 @@ class Tree:
                 else:
                     temp = temp.get_left_child()
 
+    def insert_with_recurssion_sol(self, node, new_node):
+        if node is None:
+            return new_node
+        compare_result = self.compare(node, new_node)
+
+        if compare_result == 0:
+            return node
+        elif compare_result > 0:
+            node.set_right_child(self.insert_with_recurssion_sol(
+                node.get_right_child(), new_node))
+        else:
+            node.set_left_child(self.insert_with_recurssion_sol(
+                node.get_left_child(), new_node))
+
+        return node
+
+    def insert_with_recurssion(self, new_value):
+        new_node = Node(new_value)
+        self.root = self.insert_with_recurssion_sol(self.root, new_node)
+
 
 class Stack:
 
@@ -95,12 +115,12 @@ class Stack:
 
 
 tree = Tree(5)
-tree.insert_with_loop(2)
-tree.insert_with_loop(1)
-tree.insert_with_loop(3)
-tree.insert_with_loop(7)
-tree.insert_with_loop(6)
-tree.insert_with_loop(8)
+tree.insert_with_recurssion(2)
+tree.insert_with_recurssion(1)
+tree.insert_with_recurssion(3)
+tree.insert_with_recurssion(7)
+tree.insert_with_recurssion(6)
+tree.insert_with_recurssion(8)
 
 
 def pre_order_recursive(node):
