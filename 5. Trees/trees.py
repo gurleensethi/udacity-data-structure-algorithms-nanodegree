@@ -93,6 +93,89 @@ class Tree:
         new_node = Node(new_value)
         self.root = self.insert_with_recurssion_sol(self.root, new_node)
 
+    def search(self, value):
+        temp = self.root
+
+        while temp is not None:
+            compare_result = temp.get_value() - temp.get_value()
+
+            if compare_result == 0:
+                return True
+            elif compare_result > 0:
+                temp = temp.get_right_child()
+            else:
+                temp = temp.get_left_child()
+
+        return False
+
+    def delete(self, value):
+        to_delete = self.root
+        prev = None
+
+        while to_delete is not None:
+            if to_delete.get_value() == value:
+                break
+            elif value - to_delete.get_value() > 0:
+                prev = to_delete
+                to_delete = to_delete.get_right_child()
+            else:
+                prev = to_delete
+                to_delete = to_delete.get_left_child()
+
+        if to_delete is None:
+            return
+
+        if to_delete.get_left_child() == None and to_delete.get_right_child() == None:
+            if to_delete == self.root:
+                self.root = None
+                return
+
+            if prev.get_left_child() == to_delete:
+                prev.set_left_child(None)
+            else:
+                prev.set_right_child(None)
+        elif to_delete.get_left_child() == None and to_delete.get_right_child() != None:
+            if to_delete == self.root:
+                self.root = to_delete.get_right_child()
+                return
+
+            if prev.get_left_child() == to_delete:
+                prev.set_left_child(to_delete.get_right_child())
+            else:
+                prev.set_right_child(to_delete.get_right_child())
+        elif to_delete.get_left_child() != None and to_delete.get_right_child() == None:
+            if to_delete == self.root:
+                self.root = to_delete.get_left_child()
+                return
+
+            if prev.get_left_child() == to_delete:
+                prev.set_left_child(to_delete.get_left_child())
+            else:
+                prev.set_right_child(to_delete.get_left_child())
+
+            if to_delete == self.root:
+                self.root = prev
+        else:
+            prev_right_most = to_delete
+            right_most = to_delete.get_left_child()
+            while right_most.get_right_child() is not None:
+                prev_right_most = right_most
+                right_most = right_most.get_right_child()
+
+            right_most.set_right_child(to_delete.get_right_child())
+
+            if prev_right_most != to_delete:
+                prev_right_most.set_right_child(right_most.get_left_child())
+                right_most.set_left_child(to_delete.get_left_child())
+
+            if prev == None:
+                self.root = right_most
+            else:
+                if prev.get_left_child() == to_delete:
+                    prev.set_left_child(right_most)
+                else:
+                    prev.set_right_child(right_most)
+
 
 class Stack:
 
@@ -237,6 +320,3 @@ def bfs(tree):
                 print(output)
             output = ""
             should_print = False
-
-
-bfs(tree)
