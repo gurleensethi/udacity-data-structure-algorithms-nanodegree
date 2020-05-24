@@ -44,6 +44,35 @@ class Tree:
     def get_root(self):
         return self.root
 
+    def compare(self, node, new_node):
+        return new_node.get_value() - node.get_value()
+
+    def insert_with_loop(self, new_value):
+        new_node = Node(new_value)
+
+        if self.root is None:
+            self.root = new_node
+            return
+
+        temp = self.root
+
+        while True:
+            compare_result = self.compare(temp, new_node)
+            if compare_result == 0:
+                return
+            elif compare_result > 0:
+                if temp.get_right_child() == None:
+                    temp.set_right_child(new_node)
+                    break
+                else:
+                    temp = temp.get_right_child()
+            else:
+                if temp.get_left_child() == None:
+                    temp.set_left_child(new_node)
+                    break
+                else:
+                    temp = temp.get_left_child()
+
 
 class Stack:
 
@@ -66,12 +95,12 @@ class Stack:
 
 
 tree = Tree(5)
-tree.root.left = Node(2)
-tree.root.left.left = Node(1)
-tree.root.left.right = Node(3)
-tree.root.right = Node(7)
-tree.root.right.left = Node(6)
-tree.root.right.right = Node(8)
+tree.insert_with_loop(2)
+tree.insert_with_loop(1)
+tree.insert_with_loop(3)
+tree.insert_with_loop(7)
+tree.insert_with_loop(6)
+tree.insert_with_loop(8)
 
 
 def pre_order_recursive(node):
@@ -188,3 +217,6 @@ def bfs(tree):
                 print(output)
             output = ""
             should_print = False
+
+
+bfs(tree)
