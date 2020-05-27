@@ -77,8 +77,30 @@ class HashMap:
                 self.put(temp.key, temp.value)
                 temp = temp.next
 
+    def delete(self, key):
+        bucket_index = self.get_bucket_index(key)
+        prev = None
+        temp = self.bucket_array[bucket_index]
+
+        while temp is not None and temp.key is not key:
+            prev = temp
+            temp = temp.next
+
+        if temp is None:
+            return None
+
+        # First element
+        if prev == None:
+            self.bucket_array[bucket_index] = temp.next
+        else:
+            prev.next = temp.next
+
+        self.num_entries -= 1
+
 
 map = HashMap()
 for i in range(100):
     map.put(i, i)
-print(map.size())
+
+for i in range(50):
+    map.delete(i)
