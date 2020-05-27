@@ -12,6 +12,7 @@ class HashMap:
         self.bucket_array = [None for _ in range(initial_size)]
         self.p = 37
         self.num_entries = 0
+        self.load_factor = 0.7
 
     def put(self, key, value):
         bucket_index = self.get_bucket_index(key)
@@ -26,8 +27,11 @@ class HashMap:
         new_node = LinkedListNode(key, value)
         new_node.next = self.bucket_array[bucket_index]
         self.bucket_array[bucket_index] = new_node
-
         self.num_entries += 1
+
+        current_load_factor = self.num_entries / len(self.bucket_array)
+        if current_load_factor >= self.load_factor:
+            self.__rehash()
 
     def get(self, key):
         bucket_index = self.get_bucket_index(key)
@@ -62,11 +66,19 @@ class HashMap:
     def size(self):
         return self.num_entries
 
+    def __rehash(self):
+        old_bucket = self.bucket_array
+        self.bucket_array = [None for i in range(len(self.bucket_array) * 2)]
+        self.num_entries = 0
+
+        for i in old_bucket:
+            temp = i
+            while temp is not None:
+                self.put(temp.key, temp.value)
+                temp = temp.next
+
 
 map = HashMap()
-map.put(1, 'Testing')
-map.put(2, 'Testing')
-map.put(1, 'Updated value')
-print(map.get(1))
-print(map.get(2))
-print(map.get(34))
+for i in range(100):
+    map.put(i, i)
+print(map.size())
