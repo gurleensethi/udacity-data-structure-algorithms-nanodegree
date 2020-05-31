@@ -1,4 +1,5 @@
 import sys
+from queue import deque
 
 
 class Node:
@@ -100,8 +101,8 @@ def huffman_encoding(data):
         node1 = queue.dequeue()
         node2 = queue.dequeue()
 
-        node = Node(node1.char + node2.char, node1.frequency +
-                    node2.frequency, is_value_node=False)
+        frequency_sum = node1.frequency + node2.frequency
+        node = Node(None, frequency_sum, is_value_node=False)
         node.left = node1
         node.right = node2
         queue.enqueue(node)
@@ -124,13 +125,32 @@ def huffman_encoding(data):
 
 
 def huffman_decoding(data, tree):
-    return ""
+    temp = tree
+    output = ""
+    index = 0
+
+    while True:
+        if temp.left == None and temp.right == None:
+            output += temp.char
+            temp = tree
+
+            if index == len(data):
+                break
+        else:
+            if data[index] == '0':
+                temp = temp.left
+            else:
+                temp = temp.right
+
+            index += 1
+
+    return output
 
 
 if __name__ == "__main__":
     codes = {}
 
-    a_great_sentence = "Elon Musk is great"
+    a_great_sentence = "Languages in increasing awesomeness: JavaScript, Python, Java, Go, C"
 
     print("The size of the data is: {}\n".format(
         sys.getsizeof(a_great_sentence)))
