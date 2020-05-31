@@ -1,3 +1,11 @@
+# To implement the block chain I have used LinkedList.
+#
+# A new block is added to the head of List, which makes the
+# insertion O(1).
+#
+# To make the hash unique regardless of the data being entered
+# I have hashed the data along with current timestamp.
+
 import hashlib
 from datetime import datetime
 
