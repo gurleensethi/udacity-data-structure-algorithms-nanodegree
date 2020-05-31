@@ -1,13 +1,54 @@
+# For solving this problem I have used the combination of Priority Queue and Tree.
+#
+# I have a single Node that can act as a node of queue and tree at the same time.
+#
+# Encoding
+# --------
+# For priority queue I have used a simple linked list, in which items are inserted
+# using the insertion sort paradigm, i.e. whenever an item is inserted, we iterate
+# over the list and find an appropriate index for it.
+# This makes the time complexity of insertion in our Priority Queue O(N).
+#
+# First, we have to interate over the list of string of length L and count characters.
+# This adds a complexity of O(L).
+#
+# We insert the characters into the priortiy queue. Let's say we have
+# 'N' number of unique characters. The insertion of this would take O(N*(N + 1)/2), which
+# can be written as O(N^2). The reason being, in the worst case, the insertion can take upto
+# the size of queue, the size of queue goes from 1,2...N-1,N. This equals the sum of first N
+# integers.
+#
+# Once our priority queue is ready, we start the process of dequeing the lowest two terms,
+# combining them and adding the result back to the queue. The deque operation takes constant O(1)
+# time. If there are N elements in the queue, we have to do this for N-1 times until we have only
+# one element remaining, which represents the tree. Just as above this takes 1,2...N-2,N-1 in the worst
+# case of insertion in queue. So the time complexity of this operation can be written as O(N^2).
+#
+# With the tree ready, we have to build our table that represents the code for each unique character
+# in our string. I have used pre order traversal to keep track of path and visit leaf nodes. Time
+# complexity of pre order traversal is O(N) where N is the total number of nodes in the tree.
+#
+# Once we have our table built, we iterate over the original string, for each character lookup the
+# corresponding code and append it to output string.
+#
+# Decoding
+# --------
+# Give the encoded string and source tree, we can decode the string in O(L) where L is the length of
+# encoded string.
+
 import sys
-from queue import deque
 
 
 class Node:
 
     def __init__(self, char, frequency):
+        # Makes the node act as a node of linked list
         self.next = None
+
+        # Makes the node act as a node of a tree
         self.left = None
         self.right = None
+
         self.char = char
         self.frequency = frequency
 
@@ -31,6 +72,7 @@ class PriorityQueue:
         prev = None
         temp = self.head
 
+        # Using the method of insertion sort
         while temp and node.frequency >= temp.frequency:
             prev = temp
             temp = temp.next
