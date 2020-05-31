@@ -1,3 +1,12 @@
+# I have modified the Group class to hold user is a dictionary (Map), insted
+# of an array. This allows us to check for existance of a user in a particular
+# group in O(1).
+#
+# is_user_in_group is a recursive function that will find the existance of a
+# user in a group or in all of its sub-groups.
+# Time time complexity of this opeartion is O(N) where N is the total number
+# of sub-groups + 1 (the group itself) inside a given group.
+
 class Group(object):
     def __init__(self, _name):
         self.name = _name
@@ -8,7 +17,7 @@ class Group(object):
         self.groups.append(group)
 
     def add_user(self, user):
-        self.users[user] = True
+        self.users[user] = user
 
     def get_groups(self):
         return self.groups
