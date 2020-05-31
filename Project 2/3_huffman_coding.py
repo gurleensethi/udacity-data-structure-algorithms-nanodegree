@@ -4,15 +4,15 @@ from queue import deque
 
 class Node:
 
-    def __init__(self, char, frequency, is_value_node):
+    def __init__(self, char, frequency):
         self.next = None
         self.left = None
         self.right = None
         self.char = char
         self.frequency = frequency
 
-        # Represents if the node is a value node (leaf node in the tree)
-        self.is_value_node = is_value_node
+    def is_leaf_node(self):
+        return self.left == None and self.right == None
 
 
 class PriorityQueue:
@@ -76,7 +76,7 @@ def tree_preorder(node, letter_code_dict, path):
     if node == None:
         return
 
-    if node.is_value_node:
+    if node.is_leaf_node():
         letter_code_dict[node.char] = path
 
     tree_preorder(node.left, letter_code_dict, path + "0")
@@ -95,14 +95,14 @@ def huffman_encoding(data):
     queue = PriorityQueue()
 
     for key in letter_count_dict:
-        queue.enqueue(Node(key, letter_count_dict[key], is_value_node=True))
+        queue.enqueue(Node(key, letter_count_dict[key]))
 
     while queue.size() is not 1:
         node1 = queue.dequeue()
         node2 = queue.dequeue()
 
         frequency_sum = node1.frequency + node2.frequency
-        node = Node(None, frequency_sum, is_value_node=False)
+        node = Node(None, frequency_sum)
         node.left = node1
         node.right = node2
         queue.enqueue(node)
@@ -129,20 +129,18 @@ def huffman_decoding(data, tree):
     output = ""
     index = 0
 
-    while True:
-        if temp.left == None and temp.right == None:
+    while index < len(data):
+        if data[index] == '0':
+            temp = temp.left
+        else:
+            temp = temp.right
+
+        if temp.is_leaf_node():
             output += temp.char
+            # Move back to tree root
             temp = tree
 
-            if index == len(data):
-                break
-        else:
-            if data[index] == '0':
-                temp = temp.left
-            else:
-                temp = temp.right
-
-            index += 1
+        index += 1
 
     return output
 
