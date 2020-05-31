@@ -1,0 +1,24 @@
+To solve this problem I have used a combination of HashMap and DoublyLinkedList.
+
+For HashMap, I have used the internal dictionary of Python as it serves the purpose.
+Hash Map allows for instant access of elements so they are appropriate for fetching
+any value corresponding to a key. They are also good for instant insertion. Both
+access and insertion in Hash Maps are O(1).
+
+Hash Map maintains no sequence, elements are inserted based on their 'hash' values.
+
+An LRU cache requires a sequence to be present, the elements need to be sequenced in
+such a way that one end represents the most recent used element and the other represents
+least recently used.
+
+A possibility is to make the values inside HashMap nodes of a LinkedList, the head
+of the list could represent the most recently used element, whereas the last element would represent
+the least recently used. As a user retrieves an element, it is moved to the top of the list. When we
+want to insert a new element, and the cache is at full capacity, we traverse the list and remove the
+last element. This however makes the insertion O(n), where n is the cache capacity.
+
+To solve this, instead of using a LinkedList, I have used a DoublyLinkedList. With a DoublyLinkedList,
+we have access to the last element in the list and we can remove it instantly. Also, we can instantly
+move an element to the head without needing any traversal, keeping the time complexity of operations O(1).
+
+This helps us achieve the time complexity O(1) for all operations.

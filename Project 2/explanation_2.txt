@@ -1,0 +1,10 @@
+I have used recurssion to solve this problem.
+1. Iterate over the list of files in current path.
+2. Save the item to list if it satisfies the criteria.
+3. If any of the path is a sub-directory, repeat step 1 with the path.
+4. Append all the paths found from Step 3 to the current list.
+
+The number of times we have to iterate is equal to total number of files
+and sub-directories present inside a directory and all of its sub-directories.
+The time complexity is O(n), where n is the total number files + sub-directories
+at all levels inside a directory.

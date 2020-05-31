@@ -1,0 +1,33 @@
+To solve this problem I have used 'set', which is a hash based
+data structure to keep track of unique elements. This problem can
+be solved with a Hash map as well, with no change in time complexity.
+
+Union
+-----
+Traverse the List1 and add all elements in a temporary set.
+Traverse the List2 and check if the element exists in temporary set.
+If it does not exists, add it to the final set.
+
+We have to traverse both the lists only once. So the time complexity
+is O(m+n), where m is length of list1 and n is length of list2.
+The space complexity is O(m+n), where m is length of list1 and n is
+the length of resulting set, which in worst case cannot be larger
+than the combined length of both lists.
+
+Intersection
+------------
+Just like union we first iterate list1 and add all of its elements into
+a temporary set.
+Then we iterate over list2 and check if the element exists in temporary set.
+If it exists, add it to the final array.
+
+We have to traverse both the lists only once. So the time complexity
+is O(m+n), where m is length of list1 and n is length of list2.
+The space complexity is O(m+n), where m is length of list1 and n is
+the length of resulting array, which in worst case cannot be larger
+than the smaller list.
+
+
+To optimize space complexity in both cases, we can set the list1 to the
+larger of two lists, this way we would initally copy the smaller list
+into the temporary set.
