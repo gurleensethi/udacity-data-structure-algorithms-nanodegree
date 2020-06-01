@@ -137,3 +137,6 @@ our_cache.set(6, 6)
 
 # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
 print(our_cache.get(3))
+print(our_cache.get(4))  # returns 4
+our_cache.set(7, 7)
+print(our_cache.get(2))  # returns -1

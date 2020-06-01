@@ -117,6 +117,8 @@ def intersection(llist_1, llist_2):
 
 
 # Test case 1
+print("Test 1")
+print("------")
 
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
@@ -134,6 +136,8 @@ print(union(linked_list_1, linked_list_2))
 print(intersection(linked_list_1, linked_list_2))
 
 # Test case 2
+print("Test 2")
+print("------")
 
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
@@ -149,3 +153,60 @@ for i in element_2:
 
 print(union(linked_list_3, linked_list_4))
 print(intersection(linked_list_3, linked_list_4))
+
+# Test case 3
+print("Test 3")
+print("------")
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = [1, 2, 3]
+element_2 = []
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print(union(linked_list_3, linked_list_4))        # Prints [1,2,3]
+print(intersection(linked_list_3, linked_list_4))  # Prints []
+
+# Test case 4
+print("Test 3")
+print("------")
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = []
+element_2 = []
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print(union(linked_list_3, linked_list_4))        # Prints []
+print(intersection(linked_list_3, linked_list_4))  # Prints []
+
+# Test case 5
+print("Test 5")
+print("------")
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = [1, 2, 3]
+element_2 = [4, 5, 6]
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print(union(linked_list_3, linked_list_4))        # Prints [1, 2, 3, 4, 5, 6]
+print(intersection(linked_list_3, linked_list_4))  # Prints []

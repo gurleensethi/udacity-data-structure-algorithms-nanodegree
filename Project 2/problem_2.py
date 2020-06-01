@@ -44,12 +44,21 @@ def find_files(suffix, path):
             # Append the found files to current list
             paths.extend(sub_paths)
 
-        elif os.path.isfile(file_path) and file_path.endswith(suffix):
+        elif os.path.isfile(full_file_path) and file_path.endswith(suffix):
             # File satisfies the siffux criteria, append it to the list
             paths.append(full_file_path)
 
     return paths
 
 
+# Prints all files ending with '.c'
 for file_path in find_files(".c", "./testdir"):
+    print(file_path)
+
+# Prints no files as there is nothing ending with '.py'
+for file_path in find_files(".py", "./testdir"):
+    print(file_path)
+
+# Prints all files as everything matches empty suffix
+for file_path in find_files("", "./testdir"):
     print(file_path)

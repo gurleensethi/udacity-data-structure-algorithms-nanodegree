@@ -29,6 +29,19 @@ class Group(object):
         return self.name
 
 
+def is_user_in_group(user, group):
+    if not group or not user:
+        return False
+
+    if user in group.users:
+        return True
+
+    for g in group.groups:
+        if is_user_in_group(user, g):
+            return True
+    return False
+
+
 parent = Group("parent")
 child = Group("child")
 sub_child = Group("subchild")
@@ -41,12 +54,6 @@ parent.add_group(child)
 child.add_user('child')
 parent.add_user('parent')
 
-
-def is_user_in_group(user, group):
-    if user in group.users:
-        return True
-
-    for g in group.groups:
-        if is_user_in_group(user, g):
-            return True
-    return False
+print(is_user_in_group('parent', parent))  # returns True
+print(is_user_in_group('parent', sub_child))  # returns False
+print(is_user_in_group('parent', None))  # returns False

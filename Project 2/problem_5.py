@@ -49,8 +49,24 @@ class BlockChain:
             temp = temp.next
 
 
+# Prints 3 blocks
+print("Test 1")
+print("------")
 blockchain = BlockChain()
 blockchain.add_block('123')
 blockchain.add_block('345')
 blockchain.add_block('567')
+blockchain.print_chain()
+
+# Prints no blocks
+print("Test 2")
+print("------")
+blockchain = BlockChain()
+blockchain.print_chain()
+
+# Prints 1 block
+print("Test 3")
+print("------")
+blockchain = BlockChain()
+blockchain.add_block("123")
 blockchain.print_chain()
