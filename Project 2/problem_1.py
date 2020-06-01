@@ -44,6 +44,9 @@ class LRU_Cache(object):
         self.list_head = None
         self.list_tail = None
 
+        if capacity == None or capacity < 1:
+            raise ValueError('capacity must be gerater than 0.')
+
         # Used for printing the logs
         self.debug = debug
 
@@ -140,3 +143,11 @@ print(our_cache.get(3))
 print(our_cache.get(4))  # returns 4
 our_cache.set(7, 7)
 print(our_cache.get(2))  # returns -1
+
+try:
+    our_cache = LRU_Cache(0)
+    our_cache.set(1, 1)
+    our_cache.set(2, 2)
+    print(our_cache.get(2))
+except ValueError as error:
+    print(error)  # throws an error if capacity is zero.
