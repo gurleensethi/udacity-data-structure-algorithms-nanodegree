@@ -6,3 +6,8 @@ is_user_in_group is a recursive function that will find the existance of a
 user in a group or in all of its sub-groups.
 Time time complexity of this opeartion is O(N) where N is the total number
 of sub-groups + 1 (the group itself) inside a given group.
+
+The call stack goes as deep as a sub-group can go. Each call uses a constant (C)
+amount of memory so the space complexity of method is O(C * N) where N is the 
+deepest sub-group. If the group is perceived as a tree, N is the height of 
+the tree.

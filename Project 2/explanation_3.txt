@@ -31,7 +31,21 @@ complexity of pre order traversal is O(N) where N is the total number of nodes i
 Once we have our table built, we iterate over the original string, for each character lookup the
 corresponding code and append it to output string.
 
+The space complexity for building the queue is O(N) where N is the number of nodes that represents
+unique characters in the given string.
+
+The the rescursive preorder function is called N times where N is the height of the resulting tree.
+
+Additional space is required to store two different hash maps, one for the frequency, and one for 
+storing the result codes. The length of each map is N, where N is total number of unique characters.
+Let I be the size of integer, and C be size of longest code string. This adds a space complexity of 
+O(N*I + N*C) which is O(N*(I+C))
+
 Decoding
 --------
 Give the encoded string and source tree, we can decode the string in O(L) where L is the length of
 encoded string.
+
+The space complexity is O(N) where N is total number of nodes in the tree. Additional space is 
+required to store the resulting string and hash map for storing codes. Function is not recursive,
+so no extra call stacks are generated.

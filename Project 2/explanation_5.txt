@@ -5,3 +5,8 @@ insertion O(1).
 
 To make the hash unique regardless of the data being entered
 I have hashed the data along with current timestamp.
+It takes a constant (C) amount of time to calculate a hash.
+
+The space complexity is O(N * C) where N is the number of blocks
+in a blockchain and C is the total data held inside a block. This
+can also be written as O(N).

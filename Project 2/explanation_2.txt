@@ -6,5 +6,9 @@ I have used recurssion to solve this problem.
 
 The number of times we have to iterate is equal to total number of files
 and sub-directories present inside a directory and all of its sub-directories.
-The time complexity is O(n), where n is the total number files + sub-directories
+The time complexity is O(N), where N is the total number files + sub-directories
 at all levels inside a directory.
+
+Lets say the function takes a constact space on each call O(C).
+The space complexity is O(C * N), where N is the depth of deepest sub folder in the
+target folder. The largest possible size of call stack is N.

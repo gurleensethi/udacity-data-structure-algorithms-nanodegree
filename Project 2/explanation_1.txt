@@ -22,3 +22,7 @@ we have access to the last element in the list and we can remove it instantly. A
 move an element to the head without needing any traversal, keeping the time complexity of operations O(1).
 
 This helps us achieve the time complexity O(1) for all operations.
+
+We are storing nodes that can either act as a node of linked list or node of a tree. Considering 
+node itself has a constant size (C). The space complexity is O(N * C) where N is the total number
+of nodes. This can be written as O(N).
