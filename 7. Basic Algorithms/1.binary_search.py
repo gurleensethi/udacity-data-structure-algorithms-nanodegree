@@ -53,3 +53,6 @@ def find_first(target, source):
       return index
 
 find_first(7, [1,3,5,7,7,7,8,11,12,13,14,15])
+
+def contains(array, target):
+  return binary_search(array, target) != -1
