@@ -2,7 +2,7 @@ def binary_search(array, target):
   start = 0
   end = len(array) - 1
 
-  while start < end:
+  while start <= end:
     middle = (start + end) // 2
 
     if array[middle] == target:
@@ -52,7 +52,19 @@ def find_first(target, source):
     else:
       return index
 
-find_first(7, [1,3,5,7,7,7,8,11,12,13,14,15])
-
 def contains(array, target):
   return binary_search(array, target) != -1
+
+def first_and_last_index(arr, number):
+  first_index = last_index = binary_search(arr, number)
+
+  print(first_index, last_index)
+
+  while first_index > 0 and arr[first_index - 1] == number:    
+    first_index -= 1    
+
+  while last_index < len(arr) - 1 and arr[last_index + 1] == number:
+    last_index += 1
+
+
+  return [first_index, last_index]
