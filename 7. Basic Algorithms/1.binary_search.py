@@ -26,3 +26,30 @@ def binary_search_recursive(array, target, start_index, end_index):
       return binary_search_recursive(array, target, middle_index + 1, end_index)
     else:
       return binary_search_recursive(array, target, start_index, middle_index - 1)
+
+def recursive_binary_search(target, source, left=0):
+	if len(source) == 0:
+		return None
+	center = (len(source) - 1) // 2
+	if source[center] == target:
+		return center + left
+	elif source[center] < target:
+		return recursive_binary_search(target, source[center + 1:], left + center + 1)
+	else:
+		return recursive_binary_search(target, source[:center], left)
+
+def find_first(target, source):
+  index = binary_search(source, target)
+
+  if not index:
+    return None
+
+  while source[index] == target:
+    if index == 0:
+      return 0
+    if source[index - 1] == target:
+      index -= 1
+    else:
+      return index
+
+find_first(7, [1,3,5,7,7,7,8,11,12,13,14,15])
