@@ -30,4 +30,32 @@ def merge(left, right):
 
   return copy_array
 
-print(mergesort([4,23,54,3,32,54,65,23,54,7,68,6,45]))
+def case_sort(string):
+  lower_case = []
+  upper_case = []
+
+  for s in string:
+    if ord(s) >= 97 and ord(s) <= 122:
+      lower_case.append(s)
+    else:
+      upper_case.append(s)
+    
+  lower_case.sort()
+  upper_case.sort()
+
+  result = ""
+  i = 0
+  j = 0
+
+  for s in string:
+    if ord(s) >= 97 and ord(s) <= 122:
+      result += lower_case[i]
+      i += 1
+    else:
+      result += upper_case[j]
+      j += 1
+
+  return result
+
+
+case_sort('fedRTSersUXJ')
