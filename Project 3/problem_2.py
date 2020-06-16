@@ -13,6 +13,9 @@
 #
 # The total time complexity is O(log(N)) + O(log(N)) + O(log(N)) = O(3log(N))
 # we drop the constant when N is very large so the complexity is O(log(N)).
+#
+# Space complexity is O(1) as we are not using any extra array, and for methods
+# we are passing the reference of array rather than a sub-array copy of it.
 
 def simple_binary_search(input_list, start, end, number):
 
@@ -57,7 +60,6 @@ def rotated_array_search(input_list, number):
     else:
       return simple_binary_search(input_list, 0, len(input_list) - 1, number)
     
-      
 
 def linear_search(input_list, number):
     for index, element in enumerate(input_list):

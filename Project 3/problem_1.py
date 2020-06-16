@@ -8,6 +8,8 @@
 # if the square is less than number, move start to mid (as we need a larger number),
 # if it is greater, move the end to mid (as we need a smaller number).
 # Binary search has a time complexity of O(log(N)).
+#
+# The space complexity is O(1).
 
 def sqrt(number):
   # Base case
