@@ -42,3 +42,7 @@ print ("Pass" if  (5 == sqrt(27)) else "Fail")
 print ("Pass" if  (5 == sqrt(30)) else "Fail")
 print ("Pass" if  (6 == sqrt(36)) else "Fail")
 print ("Pass" if  (1 == sqrt(3)) else "Fail")
+
+print ("Pass" if  (10 == sqrt(100)) else "Fail")
+print ("Pass" if  (9 == sqrt(99)) else "Fail")
+print ("Pass" if  (11 == sqrt(140)) else "Fail")

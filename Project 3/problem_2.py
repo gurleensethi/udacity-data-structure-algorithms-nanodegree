@@ -82,4 +82,7 @@ test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 10])
 test_function([[6, 7, 8, 1, 2, 3, 4], 4])
 test_function([[2, 3, 4, 5, 6, 7, 8, 1], 1])
+
 test_function([[0, 1, 2, 3, 4, 5, -3, -2, -1], 10])
+test_function([[2, 3, 4, 5, -3, -2, -1, 0, 1], 10])
+test_function([[1, 2, 3, 4, 5, 6, 7, 8, 9], 4])
