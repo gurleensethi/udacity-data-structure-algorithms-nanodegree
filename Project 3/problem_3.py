@@ -45,7 +45,10 @@ def merge_sort(input_list, start, end):
 
   return result
 
-def rearrange_digits(input_list):
+def rearrange_digits(input_list):    
+    if len(input_list) == 0:
+      return []
+  
     sorted_list = merge_sort(input_list, 0, len(input_list) - 1)
     
     num1 = "0"
@@ -72,3 +75,4 @@ test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
 test_function([[4, 1, 3, 1, 3, 5], [531, 431]]) # Event array length
 test_function([[1, 4, 1, 3, 1, 3, 5], [5311, 431]]) # Odd array length
 test_function([[4], [4]]) # Only one number
+test_function([[], []]) # Only one number
