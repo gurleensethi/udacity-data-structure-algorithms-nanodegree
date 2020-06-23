@@ -39,7 +39,25 @@ def dfs_search(root_node, search_value):
       if child not in visited and child not in stack:
         stack.append(child)
 
-  return False
+  return None
+
+def dfs_recursive(node, search_value, visited):
+  if node.value == search_value:
+    return node
+
+  visited.add(node)  
+
+  for child in node.children:
+    if child not in visited:
+      value = dfs_recursive(child, search_value, visited)
+      if value is not None:
+        return value
+  
+  return None
+
+def dfs_recursion_start(start_node, search_value):
+    visited = set()
+    return dfs_recursive(start_node, search_value, visited)
 
 nodeG = GraphNode('G')
 nodeR = GraphNode('R')
@@ -57,4 +75,4 @@ graph1.add_edge(nodeH,nodeG)
 graph1.add_edge(nodeH,nodeP)
 graph1.add_edge(nodeS,nodeR)
 
-dfs_search(nodeG, 'S')
+print(dfs_recursion_start(nodeG, 'S'))
