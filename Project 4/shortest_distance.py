@@ -1,52 +1,57 @@
 import math
 from queue import PriorityQueue
 
-# Huristic function
-def straight_distance(intersection1, intersection2):
-    return math.sqrt(math.pow(intersection1[0] - intersection2[0], 2) + math.pow(intersection1[1] - intersection2[1], 2))
+def distance_between_two_nodes(a,b):  
+    return math.sqrt(math.pow(b[0]-a[0], 2) + math.pow(b[1]-a[1], 2))
 
-def get_node_distance(M, lookup, start, end):
-  if (start, end) in lookup:
-    return lookup[(start, end)]
+def shortest_path(M,start,goal):
+    frontier = PriorityQueue()
+    frontier.put((0, start))
+    visited = set()
+ 
+    start_path = {
+            "node" : start,
+            "coordinates" : M.intersections[start],
+            "parent" : False,
+            "g" : 0,
+            "cost" : distance_between_two_nodes(M.intersections[start], M.intersections[goal])
+    }
 
-  if (end, start) in lookup:
-    return lookup[(end, start)]
-
-  distance = straight_distance(M.intersections[start], M.intersections[end])
-
-  lookup[(start, end)] = distance
-  lookup[(end, start)] = distance
-
-  return distance
-
-def shortest_path(M,start,goal):      
-    distance_lookup = {}
-    result = { start: 0 }
-    paths = {}
-    queue = PriorityQueue()
-    queue.put(start, 0)
-    
-    while not queue.empty():
-        min_frontier = queue.get()
-
-        for neighbour in M.roads[min_frontier]:
-          neighbour_distance = result[min_frontier] + get_node_distance(M, distance_lookup, min_frontier, neighbour)
-
-          if neighbour not in result or neighbour_distance < result[neighbour]:
-            result[neighbour] = neighbour_distance
-            paths[neighbour] = min_frontier
-            queue.put(neighbour, neighbour_distance)
+    paths = {start : start_path}
         
-    temp = goal
-    path = [goal]
-    while True:
-      if temp == start:
-        break
-      
-      temp = paths[temp]
-      path.insert(0, temp)
-    
-    return path
+    while frontier:        
+        distance, min_frontier = frontier.get()
+
+        min_frontier_path = paths[min_frontier]
+        
+        for node in M.roads[min_frontier_path["node"]]:
+            g = min_frontier_path["g"] + distance_between_two_nodes(M.intersections[node], M.intersections[min_frontier_path["node"]])
+            h = distance_between_two_nodes(M.intersections[node], M.intersections[goal])
+            f = g + h
+
+            if node not in visited:            
+              if node not in paths or f < paths[node]["cost"]:
+                  paths[node] = {
+                      "node" : node,
+                      "coordinates" : M.intersections[node],
+                      "parent": min_frontier_path["node"],
+                      "g" : g,
+                      "cost" : f 
+                  }
+
+              frontier.put((g, node))
+
+        visited.add(min_frontier_path["node"])            
+                
+        if min_frontier_path["node"] == goal:
+            path = [goal]
+            temp = goal
+            while paths[temp]["parent"]:
+                path.insert(0,paths[temp]["parent"])
+                temp = paths[temp]["parent"]
+            return path
+          
+    return -1
 
 class Graph:
   def __init__(self):
